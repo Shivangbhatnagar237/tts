@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send a message</title>
+    <link rel="stylesheet" href="/stylesheets/home.css">
+</head>
+
+<body>
+    <div id="main">
+        <div class="nav">
+            <h3>SheryApp</h3>
+        </div>
+        <div class="message-input"><textarea name="" id=""></textarea></div>
+        <button class="send-message-btn">
+            <h3>Send</h3>
+        </button>
+        <div class="online-people">
+            <div class="online-nav">
+                <h3>Online People (<span>0</span>)</h3>
+            </div>
+            <div class="names">
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js"
+        integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var socket = io("/sendmessage");
+
+        var userinput = document.querySelector('.nick-input input');
+        var enterchat = document.querySelector('.enter-chat');
+
+        window.addEventListener('load', function () {
+            if (userinput.value.trim().length === 0) {
+                setTimeout(() => userinput.placeholder = 'Enter something 😅', 8000);
+            }
+            userinput.focus();
+        })
+
+        userinput.addEventListener('keydown', function (dets) {
+            if (userinput.value.trim().length > 0 && userinput.value.trim().length <= 9 && dets.keyCode === 13) {
+                enterchat.click();
+                document.querySelector('.nick-screen').style.transform = 'translateX(-100%)';
+                userinput.blur();
+            }
+        })
+
+        var btn = document.querySelector('.send-message-btn');
+        var msg = document.querySelector('textarea');
+
+        // let direction = undefined;
+        // let r1 = undefined;
+        // let g1 = undefined;
+        // let b1 = undefined;
+        // let a1 = undefined;
+        // let r2 = undefined;
+        // let g2 = undefined;
+        // let b2 = undefined;
+        // let a2 = undefined;
+
+        enterchat.addEventListener('click', function () {
+            if (userinput.value.trim().length > 0) {
+                document.querySelector('.nick-screen').style.transform = 'translateX(-100%)';
+                socket.emit('newUser', userinput.value);
+                msg.focus();
+                document.title = `${userinput.value}'s tab`;
+            }
+        })
+
+        msg.addEventListener('input', function () {
+            that = this;
+        })
+
+        // let local = JSON.parse(localStorage.getItem("currentTab"));
+        // console.log(local);
+
+        // function simulateKey(keyCode, type, modifiers) {
+        //     var evtName = (typeof (type) === "string") ? "key" + type : "keydown";
+        //     var modifier = (typeof (modifiers) === "object") ? modifier : {};
+
+        //     var event = document.createEvent("HTMLEvents");
+        //     event.initEvent(evtName, true, false);
+        //     event.keyCode = keyCode;
+
+        //     for (var i in modifiers) {
+        //         event[i] = modifiers[i];
+        //     }
+
+        //     document.dispatchEvent(event);
+        // }
+
+        btn.addEventListener('click', function () {
+            if (that.value.trim().length > 0) {
+                socket.emit('newMessage', that.value);
+                msg.value = '';
+                // simulateKey(17, "press");
+                // simulateKey(16, "press");
+                // simulateKey(9, "press");
+                // let keyEvent = new KeyboardEvent('keydown', { ctrlKey: true, shiftKey: true, key: 'Tab' });
+                // console.log(keyEvent);
+                // document.body.dispatchEvent(keyEvent);
+                // local.focus();
+                // direction = Math.round(Math.random() * 360); //To output a value between 0 and 360 in degrees to be given to the linear-gradient.
+
+                // r1 = Math.round(Math.random() * 255); // Math.random() outputs a numer between 0(inclusive) & 1(exclusive) with around 17 decimal digits.
+                // g1 = Math.round(Math.random() * 255); // We take this number and multiply it by 255. This number can never go above 255.
+                // b1 = Math.round(Math.random() * 255); // We have a decimal number with we make an integer with Math.round() which rounds off the previous output.
+                // // to add random transparency to the image;         // This output is a whole number between 0 & 255 and can be assigned as values for the rgba() property.
+                // a1 = Math.round(Math.random() * 10) / 10; //  *** for alpha values we need between 0 & 1 so we multiply the random number with 10 so as to get a value X.xxxxx, round it off so as to X and then                                                                divide it by 10 to get a decimal number or 1. ***  //
+
+                // r2 = Math.round(Math.random() * 255);
+                // g2 = Math.round(Math.random() * 255);
+
+                // b2 = Math.round(Math.random() * 255);
+                // // to add random transparency to the image;
+                // a2 = Math.round(Math.random() * 10) / 10;
+
+                // //Giving values to the linear gradient.
+                // document.querySelectorAll('.pfp').forEach((elem) => {
+                //     elem.style.background = `linear-gradient(${direction}deg, rgba(${r1},${g1},${b1},${a1}), rgba(${r2},${g2},${b2},${a2}))`;
+                // })
+            }
+        })
+
+
+
+        msg.addEventListener('keydown', function (dets) {
+            if (dets.keyCode === 13) btn.click();
+        })
+
+        msg.addEventListener('input', function () {
+            socket.emit('typing');
+        })
+
+        let online = document.querySelector('.online-people');
+        let onlinenav = document.querySelector('.online-nav');
+        online.addEventListener('click', function () {
+            this.classList.toggle('hide-names');
+            onlinenav.classList.toggle('toggle-border');
+        })
+
+        socket.on('onlineUsers', function (namearr) {
+            let clutter = ``;
+            namearr.forEach(function (elem) {
+                clutter += `<div class="name">
+                                <h4>${elem} 🟢</h4>
+                            </div>`;
+            });
+            if (namearr.length > 0) {
+                onlinenav.innerHTML = `<h3>Online People (<span>${namearr.length}</span>)</h3>`;
+            }
+            if (namearr.length === 0) {
+                onlinenav.innerHTML = `<h3>Online People (<span>0</span>)</h3>`;
+            }
+            document.querySelector('.names').innerHTML = clutter;
+        })
+    </script>
+</body>
+
+</html>
