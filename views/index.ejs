@@ -48,9 +48,7 @@
       <h3>SheryApp</h3>
     </div>
     <div class="text">
-      <div class="joining-users">
-        <h3></h3>
-      </div>
+      <div class="joining-users"></div>
       <div class="leaving-users">
         <h3></h3>
       </div>
@@ -116,9 +114,10 @@
 
     var btn = document.querySelector('.send-btn');
     var msg = document.querySelector('.send-msg input');
-
+    let usernick;
     enterchat.addEventListener('click', function () {
       if (userinput.value.trim().length > 0) {
+        usernick = userinput.value;
         document.querySelector('.nick-screen').style.transform = 'translateX(-100%)';
         socket.emit('newUser', userinput.value);
         document.title = `${userinput.value}'s tab`;
@@ -129,7 +128,7 @@
         document.querySelector('.send-msg').style.opacity = '1';
       }
     })
-
+    
     new EmojiPicker({
       trigger: [
         {
@@ -151,7 +150,7 @@
     msg.addEventListener('input', function () {
       that = this;
     })
-    
+
     btn.addEventListener('click', function () {
       if (msg.value.trim().length > 0) {
         socket.emit('newMessage', msg.value);
@@ -223,7 +222,10 @@
       const voice = synth.getVoices()[12];
       utterThis = new SpeechSynthesisUtterance(`You have received a message from ${data.user}, and the message says: ${data.data}`);
       utterThis.voice = voice;
-      synth.speak(utterThis);
+      console.log(usernick + "/" + data.user);
+      if (usernick != data.user)
+        synth.speak(utterThis);
+
       document.querySelectorAll('.user-dets').forEach(function (elem) {
         let msg = elem.querySelector('.message').textContent.trim();
         elem.querySelector('.replay-icon').addEventListener('click', () => {
@@ -243,12 +245,8 @@
     })
 
     let joining = document.querySelector('.joining-users');
-    let jointimeout;
     socket.on('joined', (username) => {
-      joining.innerHTML = `<h3>${username} just hopped in</h3>`;
-      jointimeout = setTimeout(() => {
-        joining.innerHTML = ``;
-      }, 1200);
+      joining.innerHTML += `<h3>${username} just hopped in</h3>`;
     })
 
     socket.on('onlineUsers', function (namearr) {
@@ -267,12 +265,12 @@
       document.querySelector('.names').innerHTML = clutter;
     })
 
-    let leaving = document.querySelector('.leaving-users');
     let leavetimeout;
+    let leaving = document.querySelector('.leaving-users h3');
     socket.on('left', (dname) => {
-      leaving.innerHTML = `<h3>${dname} just left<h3>`;
+      leaving.textContent = `${dname} just left`;
       leavetimeout = setTimeout(() => {
-        leaving.innerHTML = ``;
+        leaving.textContent = ``;
       }, 1200);
     })
 

@@ -365,12 +365,21 @@ textarea:focus {
 }
 
 .leaving-users {
-    width: 100%;
+    width: 50%;
     height: 20%;
-    position: fixed;
-    top: 20%;
-    left: 90%;
+    position: absolute;
+    top: 2%;
+    left: 45%;
     transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leaving-users h3 {
+    position: absolute;
+    color: black;
+    text-align: center;
 }
 
 /* .loading-screen {
