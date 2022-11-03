@@ -32,6 +32,24 @@ body {
     transition: all cubic-bezier(0.19, 1, 0.22, 1) 2s;
 }
 
+.text::-webkit-scrollbar {
+    width: 10px;
+}
+
+.text::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.text::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.text::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 .text h2 {
     position: absolute;
     top: 50%;
@@ -263,7 +281,7 @@ textarea:focus {
 
 .text .pfp {
     margin-top: 10px;
-    width: 40px;
+    min-width: 40px;
     height: 40px;
     border-radius: 50%;
     padding: 8%;
@@ -356,12 +374,16 @@ textarea:focus {
 }
 
 .joining-users {
-    width: 100%;
-    height: 20%;
+    width: 30%;
+    height: fit-content;
     position: fixed;
-    top: 20%;
-    left: 90%;
+    top: 6%;
+    left: 50%;
+    /* background-color: red; */
     transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .leaving-users {
@@ -581,4 +603,18 @@ textarea:focus {
 
 .voice-recog:active {
     background-color: rgba(239, 239, 239, 0.473);
+}
+
+.right {
+    padding-left: 725px;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.row-rev {
+    flex-direction: row-reverse;
+}
+
+.flex-end {
+    align-items: flex-end;
 }

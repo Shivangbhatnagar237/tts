@@ -30,7 +30,7 @@ io.on("connection", function (socket) {
     socket.on('newMessage', (data) => {
         let index = ids.indexOf(socket.id);
         let user = namearr[index];
-        io.emit('newMessage', { data, user });
+        io.emit('newMessage', { data: data.message, user, clientId: data.clientSocketId });
     });
 
     socket.on('typing', () => {

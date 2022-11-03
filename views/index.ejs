@@ -124,11 +124,12 @@
         userinput.value = "";
         msg.focus();
         document.querySelector('.send-message').style.opacity = '0';
+        setTimeout(() => document.querySelector('.send-message').style.display = 'none', 2000);
         document.querySelector('.send-msg').style.zIndex = '2';
         document.querySelector('.send-msg').style.opacity = '1';
       }
     })
-    
+
     new EmojiPicker({
       trigger: [
         {
@@ -151,9 +152,11 @@
       that = this;
     })
 
+    let clientSocketId;
     btn.addEventListener('click', function () {
       if (msg.value.trim().length > 0) {
-        socket.emit('newMessage', msg.value);
+        clientSocketId = socket.id;
+        socket.emit('newMessage', { message: msg.value, clientSocketId });
         msg.value = '';
       }
     });
@@ -178,6 +181,7 @@
       var ISTTime = new Date(currentTime.getTime() + (ISTOffset + currentOffset) * 60000);
       hoursIST = ISTTime.getHours();
       minutesIST = ISTTime.getMinutes();
+      if (0 <= hoursIST && hoursIST < 10) hoursIST = `0${hoursIST}`;
       if (0 <= minutesIST && minutesIST < 10) minutesIST = `0${minutesIST}`;
     }, 1000)
 
@@ -188,7 +192,8 @@
       // window.location.href = '/';
       document.querySelector('.text h2').innerHTML = '';
       res = data.user.charAt(0) + data.user.charAt(1);
-      document.querySelector('.text').innerHTML += `
+      if (clientSocketId === data.clientId) {
+        document.querySelector('.text').innerHTML += `
       <div class="full-msg">
         <div class="pfp">
           <h2>${res.toUpperCase()}</h2>  
@@ -205,9 +210,28 @@
           </div>
         </div>
       </div>`;
-
+      } else {
+        document.querySelector('.text').innerHTML += `
+      <div class="full-msg right">
+        <div class="pfp">
+          <h2>${res.toUpperCase()}</h2>  
+        </div>
+        <div class="user-dets flex-end">
+          <h3>${data.user.charAt(0).toUpperCase() + data.user.slice(1)}, ${hoursIST}:${minutesIST}</h3>
+          <div class="msg-wrapper row-rev">
+            <div class="message">
+              ${data.data}
+            </div>
+            <div class="replay-icon">
+              <img src='/images/replay.png'>
+            </div>
+          </div>
+        </div>
+      </div>`;
+      }
+      
       document.querySelectorAll('.message').forEach((elem) => {
-        if (elem.textContent.trim() === "Happy Diwali" && (data.data === "Happy Diwali" || data.data === "\nHappy Diwali")) {
+        if (elem.textContent.trim().toLowerCase() === "happy diwali" && (data.data.toLowerCase() === "happy diwali" || data.data.toLowerCase() === "\nhappy diwali")) {
           elem.style.backgroundImage = "url(/images/Diwali.jpg)";
           elem.style.color = '#fff';
           document.querySelector('.video').style.display = 'initial';
@@ -217,12 +241,12 @@
             document.querySelector('.video video').pause();
           }, 5500);
         }
+
       });
 
       const voice = synth.getVoices()[12];
       utterThis = new SpeechSynthesisUtterance(`You have received a message from ${data.user}, and the message says: ${data.data}`);
       utterThis.voice = voice;
-      console.log(usernick + "/" + data.user);
       if (usernick != data.user)
         synth.speak(utterThis);
 
