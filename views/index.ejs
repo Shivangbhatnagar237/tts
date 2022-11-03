@@ -219,7 +219,7 @@
         <div class="user-dets flex-end">
           <h3>${data.user.charAt(0).toUpperCase() + data.user.slice(1)}, ${hoursIST}:${minutesIST}</h3>
           <div class="msg-wrapper row-rev">
-            <div class="message">
+            <div class="message nowrap">
               ${data.data}
             </div>
             <div class="replay-icon">
@@ -229,7 +229,7 @@
         </div>
       </div>`;
       }
-      
+
       document.querySelectorAll('.message').forEach((elem) => {
         if (elem.textContent.trim().toLowerCase() === "happy diwali" && (data.data.toLowerCase() === "happy diwali" || data.data.toLowerCase() === "\nhappy diwali")) {
           elem.style.backgroundImage = "url(/images/Diwali.jpg)";

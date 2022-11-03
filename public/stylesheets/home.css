@@ -618,3 +618,7 @@ textarea:focus {
 .flex-end {
     align-items: flex-end;
 }
+
+.nowrap {
+    white-space: nowrap;
+}
