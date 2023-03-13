@@ -402,7 +402,7 @@ textarea:focus {
   background: linear-gradient(90deg, #50c9c3, #96deda);
   border-radius: 10px;
   position: absolute;
-  bottom: 25%;
+  bottom: 28%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
