@@ -1,205 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage (Group)</title>
+    <link rel="stylesheet" href="/stylesheets/home.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Homepage (Group)</title>
-  <link rel="stylesheet" href="/stylesheets/home.css">
-</head>
-
-<body>
-  <div id="main">
-    <div class="center">
-      <div class="aboutTTS">
-        <h2>This is a group chat with Text-to-speech accessibility</h2>
+  <body>
+    <a href=""></a>
+    <div id="main">
+      <div class="center">
+        <div class="aboutTTS">
+          <h2>This is a group chat with Text-to-speech accessibility</h2>
+        </div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
       </div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-      <div class="wave"></div>
-    </div>
-    <div class="online-people">
-      <div class="online-nav">
-        <h3>Online People (<span>0</span>)</h3>
+      <div class="online-people">
+        <div class="online-nav">
+          <h3>Online People (<span>0</span>)</h3>
+        </div>
+        <div class="names"></div>
       </div>
-      <div class="names">
+      <div class="video">
+        <video src="/images/Confetti.mp4" autoplay muted></video>
       </div>
-    </div>
-    <div class="video">
-      <video src="/images/Confetti.mp4" autoplay muted></video>
-    </div>
-    <div class="nick-screen">
-      <div class="nick-input">
-        <input type="text" name="nickname" id="nickname" placeholder="Enter nickname" autocomplete="off">
-        <div class="enter-chat">
-          <ion-icon name="arrow-forward-outline"></ion-icon>
+      <div class="nick-screen">
+        <div class="nick-input">
+          <input
+            type="text"
+            name="nickname"
+            id="nickname"
+            placeholder="Enter nickname"
+            autocomplete="off"
+          />
+          <div class="enter-chat">
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </div>
+        </div>
+      </div>
+      <div class="nav">
+        <h3>SheryApp</h3>
+      </div>
+      <div class="text">
+        <div class="joining-users"></div>
+        <div class="leaving-users">
+          <h3></h3>
+        </div>
+        <h2>No messages received 🦁</h2>
+      </div>
+      <div class="typing-message">
+        <h4></h4>
+      </div>
+      <div class="send-message" onClick="joinConversation()">
+        <h3>Join the conversation</h3>
+      </div>
+      <div class="send-msg">
+        <div class="emoji">
+          <img src="/images/happy.png" alt="" class="btn1" />
+        </div>
+        <input
+          type="text"
+          placeholder="Enter message"
+          class="txt1"
+          autocomplete="off"
+        />
+        <div class="send-btn">
+          <ion-icon name="send-outline"></ion-icon>
+        </div>
+        <div class="voice-recog" title="Speech recognition">
+          <ion-icon name="mic-outline"></ion-icon>
         </div>
       </div>
     </div>
-    <div class="nav">
-      <h3>SheryApp</h3>
-    </div>
-    <div class="text">
-      <div class="joining-users"></div>
-      <div class="leaving-users">
-        <h3></h3>
-      </div>
-      <h2>No messages received 🦁</h2>
-    </div>
-    <div class="typing-message">
-      <h4></h4>
-    </div>
-    <div class="send-message" onClick="joinConversation()">
-      <h3>Join the conversation</h3>
-    </div>
-    <div class="send-msg">
-      <div class="emoji">
-        <img src="/images/happy.png" alt="" class="btn1">
-      </div>
-      <input type="text" placeholder="Enter message" class="txt1" autocomplete="off">
-      <div class="send-btn">
-        <ion-icon name="send-outline"></ion-icon>
-      </div>
-      <div class="voice-recog" title="Speech recognition">
-        <ion-icon name="mic-outline"></ion-icon>
-      </div>
-    </div>
-  </div>
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
-    integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer">
-    </script>
-  <script src="/javascripts/emoji.js"></script>
-  <script src="https://cdn.socket.io/4.5.3/socket.io.min.js"
-    integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi"
-    crossorigin="anonymous"></script>
-  <script>
-    var socket = io();
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+      integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="/javascripts/emoji.js"></script>
+    <script
+      src="https://cdn.socket.io/4.5.3/socket.io.min.js"
+      integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var socket = io();
 
-    let loadingScreen = document.querySelector('.center');
+      let loadingScreen = document.querySelector(".center");
 
-    window.addEventListener('load', () => {
-      setTimeout(() => loadingScreen.style.opacity = '0', 1750);
-      setTimeout(() => loadingScreen.style.display = 'none', 2000);
-    })
+      window.addEventListener("load", () => {
+        setTimeout(() => (loadingScreen.style.opacity = "0"), 1750);
+        setTimeout(() => (loadingScreen.style.display = "none"), 2000);
+      });
 
-    var userinput = document.querySelector('.nick-input input');
-    var enterchat = document.querySelector('.enter-chat');
+      var userinput = document.querySelector(".nick-input input");
+      var enterchat = document.querySelector(".enter-chat");
 
-    function joinConversation() {
-      document.querySelector('.nick-screen').style.transform = 'translateX(0%)';
-      document.querySelector('.text').style.border = '1px solid black';
-      if (userinput.value.trim().length === 0) {
-        setTimeout(() => userinput.placeholder = 'Enter something 😅', 8000);
-      }
-      userinput.focus();
-    }
-
-    userinput.addEventListener('keydown', function (dets) {
-      if (userinput.value.trim().length > 0 && userinput.value.trim().length <= 9 && dets.keyCode === 13) {
-        enterchat.click();
-        userinput.blur();
-      }
-    })
-
-    var btn = document.querySelector('.send-btn');
-    var msg = document.querySelector('.send-msg input');
-    let usernick;
-    enterchat.addEventListener('click', function () {
-      if (userinput.value.trim().length > 0) {
-        usernick = userinput.value;
-        document.querySelector('.nick-screen').style.transform = 'translateX(-100%)';
-        socket.emit('newUser', userinput.value);
-        document.title = `${userinput.value}'s tab`;
-        userinput.value = "";
-        msg.focus();
-        document.querySelector('.send-message').style.opacity = '0';
-        setTimeout(() => document.querySelector('.send-message').style.display = 'none', 2000);
-        document.querySelector('.send-msg').style.zIndex = '2';
-        document.querySelector('.send-msg').style.opacity = '1';
-      }
-    })
-
-    new EmojiPicker({
-      trigger: [
-        {
-          insertInto: ['.txt1'],
-          selector: '.btn1'
+      function joinConversation() {
+        document.querySelector(".nick-screen").style.transform =
+          "translateX(0%)";
+        document.querySelector(".text").style.border = "1px solid black";
+        if (userinput.value.trim().length === 0) {
+          setTimeout(
+            () => (userinput.placeholder = "Enter something 😅"),
+            8000
+          );
         }
-      ],
-      closeButton: true,
-      dragButton: true,
-      width: 200,
-      height: 250,
-      addPosX: -400,
-      addPosY: -400,
-      animation: "slideDown",
-      animationDuration: "1s",
-    });
-    var that;
-
-    msg.addEventListener('input', function () {
-      that = this;
-    })
-
-    let clientSocketId;
-    btn.addEventListener('click', function () {
-      if (msg.value.trim().length > 0) {
-        clientSocketId = socket.id;
-        socket.emit('newMessage', { message: msg.value, clientSocketId });
-        msg.value = '';
+        userinput.focus();
       }
-    });
 
-    msg.addEventListener('keydown', function (dets) {
-      if (dets.keyCode === 13) btn.click();
-    })
+      userinput.addEventListener("keydown", function (dets) {
+        if (
+          userinput.value.trim().length > 0 &&
+          userinput.value.trim().length <= 9 &&
+          dets.keyCode === 13
+        ) {
+          enterchat.click();
+          userinput.blur();
+        }
+      });
 
-    msg.addEventListener('input', function () {
-      socket.emit('typing');
-    })
+      let voiceNum = (function (agent) {
+        switch (true) {
+          case agent.indexOf("edge") > -1:
+            return "MS Edge";
+          case agent.indexOf("edg/") > -1:
+            return 155;
+          case agent.indexOf("opr") > -1 && !!window.opr:
+            return "Opera";
+          case agent.indexOf("chrome") > -1 && !!window.chrome:
+            return 12;
+          case agent.indexOf("trident") > -1:
+            return "MS IE";
+          case agent.indexOf("firefox") > -1:
+            return 0;
+          case agent.indexOf("safari") > -1:
+            return "Safari";
+          default:
+            return "other";
+        }
+      })(window.navigator.userAgent.toLowerCase());
 
-    const synth = window.speechSynthesis;
-    document.querySelector('.video video').pause();
+      var btn = document.querySelector(".send-btn");
+      var msg = document.querySelector(".send-msg input");
+      let usernick;
+      enterchat.addEventListener("click", function () {
+        if (userinput.value.trim().length > 0) {
+          usernick = userinput.value;
+          document.querySelector(".nick-screen").style.transform =
+            "translateX(-100%)";
+          socket.emit("newUser", userinput.value);
+          document.title = `${userinput.value}'s tab`;
+          userinput.value = "";
+          msg.focus();
+          document.querySelector(".send-message").style.opacity = "0";
+          setTimeout(
+            () =>
+              (document.querySelector(".send-message").style.display = "none"),
+            2000
+          );
+          document.querySelector(".send-msg").style.zIndex = "2";
+          document.querySelector(".send-msg").style.opacity = "1";
+        }
+      });
 
-    var hoursIST;
-    var minutesIST;
-    setInterval(() => {
-      var currentTime = new Date();
-      var currentOffset = currentTime.getTimezoneOffset();
-      var ISTOffset = 330;   // IST offset UTC +5:30 
-      var ISTTime = new Date(currentTime.getTime() + (ISTOffset + currentOffset) * 60000);
-      hoursIST = ISTTime.getHours();
-      minutesIST = ISTTime.getMinutes();
-      if (0 <= hoursIST && hoursIST < 10) hoursIST = `0${hoursIST}`;
-      if (0 <= minutesIST && minutesIST < 10) minutesIST = `0${minutesIST}`;
-    }, 1000)
+      new EmojiPicker({
+        trigger: [
+          {
+            insertInto: [".txt1"],
+            selector: ".btn1",
+          },
+        ],
+        closeButton: true,
+        dragButton: true,
+        width: 200,
+        height: 250,
+        addPosX: -400,
+        addPosY: -400,
+        animation: "slideDown",
+        animationDuration: "1s",
+      });
+      var that;
 
-    let res = '';
-    let utterThis;
+      msg.addEventListener("input", function () {
+        that = this;
+      });
 
-    socket.on('newMessage', async (data, name) => {
-      // window.location.href = '/';
-      document.querySelector('.text h2').innerHTML = '';
-      res = data.user.charAt(0) + data.user.charAt(1);
-      if (clientSocketId === data.clientId) {
-        document.querySelector('.text').innerHTML += `
+      let clientSocketId;
+      btn.addEventListener("click", function () {
+        if (msg.value.trim().length > 0) {
+          clientSocketId = socket.id;
+          socket.emit("newMessage", { message: msg.value, clientSocketId });
+          msg.value = "";
+        }
+      });
+
+      msg.addEventListener("keydown", function (dets) {
+        if (dets.keyCode === 13) btn.click();
+      });
+
+      msg.addEventListener("input", function () {
+        socket.emit("typing");
+      });
+
+      const synth = window.speechSynthesis;
+      document.querySelector(".video video").pause();
+
+      var hoursIST;
+      var minutesIST;
+      setInterval(() => {
+        var currentTime = new Date();
+        var currentOffset = currentTime.getTimezoneOffset();
+        var ISTOffset = 330; // IST offset UTC +5:30
+        var ISTTime = new Date(
+          currentTime.getTime() + (ISTOffset + currentOffset) * 60000
+        );
+        hoursIST = ISTTime.getHours();
+        minutesIST = ISTTime.getMinutes();
+        if (0 <= hoursIST && hoursIST < 10) hoursIST = `0${hoursIST}`;
+        if (0 <= minutesIST && minutesIST < 10) minutesIST = `0${minutesIST}`;
+      }, 1000);
+
+      let res = "";
+      let utterThis;
+
+      socket.on("newMessage", async (data, name) => {
+        // window.location.href = '/';
+        document.querySelector(".text h2").innerHTML = "";
+        res = data.user.charAt(0) + data.user.charAt(1);
+        if (clientSocketId === data.clientId) {
+          document.querySelector(".text").innerHTML += `
       <div class="full-msg">
         <div class="pfp">
           <h2>${res.toUpperCase()}</h2>  
         </div>
         <div class="user-dets">
-          <h3>${data.user.charAt(0).toUpperCase() + data.user.slice(1)}, ${hoursIST}:${minutesIST}</h3>
+          <h3>${
+            data.user.charAt(0).toUpperCase() + data.user.slice(1)
+          }, ${hoursIST}:${minutesIST}</h3>
           <div class="msg-wrapper">
             <div class="message">
               ${data.data}
@@ -210,14 +268,16 @@
           </div>
         </div>
       </div>`;
-      } else {
-        document.querySelector('.text').innerHTML += `
+        } else {
+          document.querySelector(".text").innerHTML += `
       <div class="full-msg right">
         <div class="pfp">
           <h2>${res.toUpperCase()}</h2>  
         </div>
         <div class="user-dets flex-end">
-          <h3>${data.user.charAt(0).toUpperCase() + data.user.slice(1)}, ${hoursIST}:${minutesIST}</h3>
+          <h3>${
+            data.user.charAt(0).toUpperCase() + data.user.slice(1)
+          }, ${hoursIST}:${minutesIST}</h3>
           <div class="msg-wrapper row-rev">
             <div class="message nowrap">
               ${data.data}
@@ -228,118 +288,124 @@
           </div>
         </div>
       </div>`;
-      }
-
-      document.querySelectorAll('.message').forEach((elem) => {
-        if (elem.textContent.trim().toLowerCase() === "happy diwali" && (data.data.toLowerCase() === "happy diwali" || data.data.toLowerCase() === "\nhappy diwali")) {
-          elem.style.backgroundImage = "url(/images/Diwali.jpg)";
-          elem.style.color = '#fff';
-          document.querySelector('.video').style.display = 'initial';
-          document.querySelector('.video video').load();
-          setTimeout(() => {
-            document.querySelector('.video').style.display = 'none';
-            document.querySelector('.video video').pause();
-          }, 5500);
         }
 
-      });
+        document.querySelectorAll(".message").forEach((elem) => {
+          if (
+            elem.textContent.trim().toLowerCase() === "happy diwali" &&
+            (data.data.toLowerCase() === "happy diwali" ||
+              data.data.toLowerCase() === "\nhappy diwali")
+          ) {
+            elem.style.backgroundImage = "url(/images/Diwali.jpg)";
+            elem.style.color = "#fff";
+            document.querySelector(".video").style.display = "initial";
+            document.querySelector(".video video").load();
+            setTimeout(() => {
+              document.querySelector(".video").style.display = "none";
+              document.querySelector(".video video").pause();
+            }, 5500);
+          }
+        });
+        if (isNaN(voiceNum)) console.log("Voice not supported");
+        const voice = synth.getVoices()[voiceNum];
 
-      const voice = synth.getVoices()[12];
-      utterThis = new SpeechSynthesisUtterance(`You have received a message from ${data.user}, and the message says: ${data.data}`);
-      utterThis.voice = voice;
-      if (usernick != data.user)
-        synth.speak(utterThis);
+        utterThis = new SpeechSynthesisUtterance(
+          `You have received a message from ${data.user}, and the message says: ${data.data}`
+        );
+        utterThis.voice = voice;
+        if (usernick != data.user) synth.speak(utterThis);
 
-      document.querySelectorAll('.user-dets').forEach(function (elem) {
-        let msg = elem.querySelector('.message').textContent.trim();
-        elem.querySelector('.replay-icon').addEventListener('click', () => {
-          utterThis = new SpeechSynthesisUtterance(`The message says: ${msg}`);
-          utterThis.voice = voice;
-          utterThis.rate = 0.85;
-          synth.speak(utterThis);
+        document.querySelectorAll(".user-dets").forEach(function (elem) {
+          let msg = elem.querySelector(".message").textContent.trim();
+          elem.querySelector(".replay-icon").addEventListener("click", () => {
+            utterThis = new SpeechSynthesisUtterance(
+              `The message says: ${msg}`
+            );
+            utterThis.voice = voice;
+            utterThis.rate = 0.85;
+            synth.speak(utterThis);
+          });
         });
       });
-    });
 
-    let online = document.querySelector('.online-people');
-    let onlinenav = document.querySelector('.online-nav');
-    online.addEventListener('click', function () {
-      this.classList.toggle('hide-names');
-      onlinenav.classList.toggle('toggle-border');
-    })
+      let online = document.querySelector(".online-people");
+      let onlinenav = document.querySelector(".online-nav");
+      online.addEventListener("click", function () {
+        this.classList.toggle("hide-names");
+        onlinenav.classList.toggle("toggle-border");
+      });
 
-    let joining = document.querySelector('.joining-users');
-    socket.on('joined', (username) => {
-      joining.innerHTML += `<h3>${username} just hopped in</h3>`;
-    })
+      let joining = document.querySelector(".joining-users");
+      socket.on("joined", (username) => {
+        joining.innerHTML += `<h3>${username} just hopped in</h3>`;
+      });
 
-    socket.on('onlineUsers', function (namearr) {
-      let clutter = ``;
-      namearr.forEach(function (elem) {
-        clutter += `<div class="name">
+      socket.on("onlineUsers", function (namearr) {
+        let clutter = ``;
+        namearr.forEach(function (elem) {
+          clutter += `<div class="name">
                       <h4>${elem} 🟢</h4>
                     </div>`;
+        });
+        if (namearr.length > 0) {
+          onlinenav.innerHTML = `<h3>Online People (<span>${namearr.length}</span>)</h3>`;
+        }
+        if (namearr.length === 0) {
+          onlinenav.innerHTML = `<h3>Online People (<span>0</span>)</h3>`;
+        }
+        document.querySelector(".names").innerHTML = clutter;
       });
-      if (namearr.length > 0) {
-        onlinenav.innerHTML = `<h3>Online People (<span>${namearr.length}</span>)</h3>`;
-      }
-      if (namearr.length === 0) {
-        onlinenav.innerHTML = `<h3>Online People (<span>0</span>)</h3>`;
-      }
-      document.querySelector('.names').innerHTML = clutter;
-    })
 
-    let leavetimeout;
-    let leaving = document.querySelector('.leaving-users h3');
-    socket.on('left', (dname) => {
-      leaving.textContent = `${dname} just left`;
-      leavetimeout = setTimeout(() => {
-        leaving.textContent = ``;
-      }, 1200);
-    })
+      let leavetimeout;
+      let leaving = document.querySelector(".leaving-users h3");
+      socket.on("left", (dname) => {
+        leaving.textContent = `${dname} just left`;
+        leavetimeout = setTimeout(() => {
+          leaving.textContent = ``;
+        }, 1200);
+      });
 
-    let timeout;
-    socket.on('typing', function (data) {
-      clearTimeout(timeout);
-      document.querySelector('.typing-message h4').textContent = `${data.user} is typing...`;
-      timeout = setTimeout(() => {
-        document.querySelector('.typing-message h4').textContent = ``;
-      }, 1000);
-    })
+      let timeout;
+      socket.on("typing", function (data) {
+        clearTimeout(timeout);
+        document.querySelector(
+          ".typing-message h4"
+        ).textContent = `${data.user} is typing...`;
+        timeout = setTimeout(() => {
+          document.querySelector(".typing-message h4").textContent = ``;
+        }, 1000);
+      });
 
-    let flag = 0;
-    const button = document.querySelector('.voice-recog');
-    button.addEventListener('click', () => {
-      if (flag === 1) {
-        recognition.abort();
-        button.innerText = 'Start';
-        flag = 0;
-      }
-      else {
-        button.innerText = 'Stop';
-        recognition.start();
-        flag = 1;
-      }
-    });
+      let flag = 0;
+      const button = document.querySelector(".voice-recog");
+      button.addEventListener("click", () => {
+        if (flag === 1) {
+          recognition.abort();
+          button.innerText = "Start";
+          flag = 0;
+        } else {
+          button.innerText = "Stop";
+          recognition.start();
+          flag = 1;
+        }
+      });
 
-    const content = document.querySelector('.txt1');
-    const recognition = new webkitSpeechRecognition();
-    recognition.lang = 'en-IN';
-    recognition.continuous = true;
-    recognition.interimResults = false;
-    recognition.onresult = function (event) {
-      let result = '';
-      for (let i = event.resultIndex; i < event.results.length; i++) {
-        result += event.results[i][0].transcript;
-      }
-      content.value += result;
-      let voice = synth.getVoices()[12];
-      utter = new SpeechSynthesisUtterance(`You spoke ${result}`);
-      utter.voice = voice;
-      synth.speak(utter);
-    };
-
-  </script>
-</body>
-
+      const content = document.querySelector(".txt1");
+      const recognition = new webkitSpeechRecognition();
+      recognition.lang = "en-IN";
+      recognition.continuous = true;
+      recognition.interimResults = false;
+      recognition.onresult = function (event) {
+        let result = "";
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          result += event.results[i][0].transcript;
+        }
+        content.value += result;
+        let voice = synth.getVoices()[12];
+        utter = new SpeechSynthesisUtterance(`You spoke ${result}`);
+        utter.voice = voice;
+        synth.speak(utter);
+      };
+    </script>
+  </body>
 </html>
