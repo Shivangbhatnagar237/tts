@@ -104,6 +104,7 @@
       crossorigin="anonymous"
     ></script>
     <script>
+      let msgDiv = document.querySelector(".text");
       var socket = io();
 
       let loadingScreen = document.querySelector(".center");
@@ -243,6 +244,7 @@
 
       let res = "";
       let utterThis;
+      let userHasScrolled = false;
 
       socket.on("newMessage", async (data, name) => {
         // window.location.href = '/';
@@ -306,6 +308,7 @@
             }, 5500);
           }
         });
+
         if (isNaN(voiceNum)) console.log("Voice not supported");
         const voice = synth.getVoices()[voiceNum];
 
@@ -326,6 +329,15 @@
             synth.speak(utterThis);
           });
         });
+
+        msgDiv.addEventListener("mousewheel", () => {
+          userHasScrolled = true;
+          setTimeout(() => (userHasScrolled = false), 3500);
+        });
+
+        if (!userHasScrolled) {
+          msgDiv.scrollTop = msgDiv.scrollHeight;
+        }
       });
 
       let online = document.querySelector(".online-people");
