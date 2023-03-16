@@ -109,7 +109,7 @@
 
       let loadingScreen = document.querySelector(".center");
 
-      window.addEventListener("load", () => {
+      window.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => (loadingScreen.style.opacity = "0"), 1750);
         setTimeout(() => (loadingScreen.style.display = "none"), 2000);
       });
